@@ -1,0 +1,150 @@
+Moskau - Москва  
+Paris - Париж  
+Tokio  
+New York  
+Madrid  
+Budapest  
+Kiew – Киев  
+
+Я живу в  
+Он живёт в  
+Она живёт в  
+Они жувут в  
+Вы живёте в  
+Мы живём в  
+ВЫ живёте в  
+
+---
+
+Nominativ | Akkusativ   | Dativ
+--------- | :---------: | -----------:
+ich - я   | mich - меня | mir   - мне
+du  - ты  | dich - тебя | dir   - тебе
+er  - он  | ihr  - его  | ihm   - ему
+sie - она | sie  - её   | ihr   - ей
+es  - оно | es   - его  | ihm   - ему
+wir - мы  | uns  - нас  | uns   - нам
+ihr - вы  | euch - вас  | euch  - вам 
+Sie - Вы  | Sie  - Вас  | Ihnen - Вам
+sie - они | sie  - их   | ihnen - им
+    
+```
+именительный падеж — Nominativ
+Я – Ich
+wir – мы
+du – ты,
+Sie – Вы (формальное, уважительное обращение),
+ihr – вы (неформальное обращение). 
+er – он
+sie – она
+es – оно
+sie – они.
+
+• я – ich [ихь]
+• ты – du [ду]
+• он – er [эа] («r» после гласных в немецком языке не произносится и похожа больше на «а»)
+• она – sie [зии] (тянем «и»)
+• оно – es [эс] (букву «е» произносим почти всегда как«э»)
+• мы – wir [виа] (также, как и с «er»)
+• вы – ihr [иа] (неформально, обращение к группе людей)
+• Вы – Sie [зии] (уважительная форма)
+• они – sie [зии]
+
+винительный падеж — Akkusativ:
+mich — меня;
+dich — тебя;
+ihn — его;
+sie — её;
+es — его;
+uns — нас;
+euch — вас;
+Sie — Вас;
+sie — их.
+
+Я спрашиваю
+тебя
+их
+его
+её
+
+Он спрашивает
+меня
+нас
+
+Ты спрашиваешь
+меня
+нас
+их
+его
+её
+```
+-----
+```
+Ich liebe es — я люблю это;
+
+дательный — Dativ:
+mir — мне;
+dir — тебе;
+ihm — ему;
+ihr — ей;
+ihm — ему;
+uns — нам;
+euch — вам;
+Ihnen — Вам;
+ihnen — им.
+
+Ich helfe dir — я помогаю тебе;
+Wie geht es Ihnen? — как у вас дела?
+Sie sagt euch etwas — она говорит что-то вам.
+
+Список столиц мира на немецком языке
+
+Amsterdam – Амстердам
+Andorra – Андорра
+Ankara – Анкара
+Athen – Афины
+Belgrad – Белград
+Berlin – Берлин
+Bern – Берно
+Bratislava – Братислава
+Brüssel – Брюссель
+Budapest – Будапешт
+Bukarest – Бухарест
+Dublin – Дублин
+Helsinki – Хельсинки
+Kiew – Киев
+Chisinau – Кишинёв
+Kopenhagen – Копенгаген
+Lissabon – Лиссабон
+London – Лондон
+Ljubljana – Любляна
+Luxemburg – Люксембург
+Madrid – Мадрид
+Minsk – Минск
+Monaco – Монако
+Moskau – Москва
+Oslo – Осло
+Paris – Париж
+Podgorica – Подгорица
+Prag – Прага
+Pristina – Приштина
+Reykjavik – Рейкьявик
+Riga – Рига
+Rom – Рим
+San Marino – Сан Марино
+Sarajevo – Сараево
+Skopje – Скопье
+Sofia – София
+Stockholm – Стокгольм
+Tallinn – Таллин
+Tirana – Тирана
+Vaduz – Вадуц
+Valletta – Валлетта
+Warschau – Варшава
+Vatikan – Ватикан
+Wien – Вена
+Wilna – Вильнюс
+Zagreb – Загреб
+```
+
+<https://pikabu.ru/story/urok_17_sklonenie_lichnyikh_mestoimeniy_v_nemetskom_yazyike_6999815>

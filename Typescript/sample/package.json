@@ -1,0 +1,23 @@
+{
+  "name": "wp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack server --port 7777",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.5.6",
+    "@types/jqueryui": "^1.12.16",
+    "webpack-jquery-ui": "^2.0.1"
+  },
+  "devDependencies": {
+    "style-loader": "^3.2.1",
+    "ts-loader": "^9.2.4",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
