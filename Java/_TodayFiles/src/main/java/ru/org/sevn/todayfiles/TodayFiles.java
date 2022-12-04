@@ -32,12 +32,12 @@ import java.util.stream.Stream;
 public class TodayFiles {
 
     public static String getNoExt(final String n, final String e) {
-        return n.substring(0, n.length() - e.length());
+        return n.substring(0, n.length() - e.length()).replace("\\", "/");
     }
     
     public static String getLink(final String n) {
         //return n.replace(" ", "\\ ");
-        return n.replace(" ", "%20");
+        return n.replace(" ", "%20").replace("\\", "/");
     }
     
     public static void writeIndex(final File dir, final File dates, Comparator<File> order) throws IOException {
@@ -57,7 +57,16 @@ public class TodayFiles {
                         && !f.getName().equals("index.md")
                         && !f.equals(dates)
         );
+        
+        System.out.println();
+        for (File f : files) {
+            System.out.println(">>" + f.getName());
+        }
         Arrays.sort(files, order);
+        System.out.println();
+        for (File f : files) {
+            System.out.println("s>" + f.getName());
+        }
         final StringBuilder sb = new StringBuilder();
         for (final File f : files) {
             if (f.isDirectory()) {
@@ -88,7 +97,7 @@ public class TodayFiles {
         }
         final File dates = new File(dir, "dates");
         
-        writeIndex(dir, dates, (f1, f2) -> f1.compareTo(f2));
+        writeIndex(dir, dates, getComparator(1));
         
         for (int dn = 0; dn < 10; dn ++, date = date.minusDays(1)) {
             final File fileToday = new File(dates, DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date)+".md");
@@ -113,7 +122,7 @@ public class TodayFiles {
                         .filter(f -> !f.getFileName().toString().equals("README.md"))
                         .filter(f -> !f.getFileName().toString().equals("index.md"))
                         .filter(f -> f.getFileName().toString().endsWith(".md"))
-                        .sorted();
+                        .sorted(getComparatorPath(1));
 
                 result.forEach(p -> {
                     sbFileToday.append("\n")
@@ -133,11 +142,27 @@ public class TodayFiles {
             }
         }
         
-        writeIndex(dates, dates, (f1, f2) -> -1 * f1.compareTo(f2));
+        writeIndex(dates, dates, getComparator(-1));
+    }
+    private static Comparator<Path> getComparatorPath(int order) {
+        Comparator<File> fileComparator = getComparator(order);
+        return (f1, f2) -> {
+            return fileComparator.compare(f1.toFile(), f2.toFile());
+        };
+    }
+
+    private static Comparator<File> getComparator(int order) {
+        return (f1, f2) -> {
+            try {
+                return order * f1.getCanonicalPath().compareTo(f2.getCanonicalPath());
+            } catch (IOException ex) {
+                return order * f1.compareTo(f2);
+            }
+        };
     }
     
     private static void writeIt(Path path, byte[] bytes) throws IOException {
-        System.out.println(">>>>" + path+":" + new String(bytes, StandardCharsets.UTF_8));
-        //Files.write(path, bytes);
+        //System.out.println(">>>>" + path+":" + new String(bytes, StandardCharsets.UTF_8));
+        Files.write(path, bytes);
     }
 }
