@@ -58,15 +58,7 @@ public class TodayFiles {
                         && !f.equals(dates)
         );
         
-        System.out.println();
-        for (File f : files) {
-            System.out.println(">>" + f.getName());
-        }
         Arrays.sort(files, order);
-        System.out.println();
-        for (File f : files) {
-            System.out.println("s>" + f.getName());
-        }
         final StringBuilder sb = new StringBuilder();
         for (final File f : files) {
             if (f.isDirectory()) {
@@ -145,19 +137,15 @@ public class TodayFiles {
         writeIndex(dates, dates, getComparator(-1));
     }
     private static Comparator<Path> getComparatorPath(int order) {
-        Comparator<File> fileComparator = getComparator(order);
         return (f1, f2) -> {
-            return fileComparator.compare(f1.toFile(), f2.toFile());
+            return order * f1.toString().compareTo(f2.toString());
         };
     }
 
     private static Comparator<File> getComparator(int order) {
+        Comparator<Path> fileComparator = getComparatorPath(order);
         return (f1, f2) -> {
-            try {
-                return order * f1.getCanonicalPath().compareTo(f2.getCanonicalPath());
-            } catch (IOException ex) {
-                return order * f1.compareTo(f2);
-            }
+            return fileComparator.compare(f1.toPath(), f2.toPath());
         };
     }
     
