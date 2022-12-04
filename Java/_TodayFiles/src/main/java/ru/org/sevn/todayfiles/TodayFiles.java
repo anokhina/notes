@@ -36,7 +36,8 @@ public class TodayFiles {
     }
     
     public static String getLink(final String n) {
-        return n.replace(" ", "\\ ");
+        //return n.replace(" ", "\\ ");
+        return n.replace(" ", "%20");
     }
     
     public static void writeIndex(final File dir, final File dates, Comparator<File> order) throws IOException {
@@ -73,10 +74,12 @@ public class TodayFiles {
         }
         final File idx = new File(dir, "index.md");
         //System.out.println(">>>>" + dir.getName()+":"+sb.toString());
-        Files.write(idx.toPath(), sb.toString().getBytes(StandardCharsets.UTF_8));
+        writeIt(idx.toPath(), sb.toString().getBytes(StandardCharsets.UTF_8));
     }
     
     public static void main(final String[] args) throws IOException {
+        LocalDate mindate = LocalDate.of(2022, 12, 4);
+        Long mintime = Date.from(mindate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime() - 1;
         LocalDate date = LocalDate.now();
         
         final File dir = new File("../..");
@@ -93,6 +96,9 @@ public class TodayFiles {
             final Instant instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant();
             final Long today = Date.from(instant).getTime();
             final Long tomorrow = Date.from(date.atStartOfDay(ZoneId.systemDefault()).plusDays(1).toInstant()).getTime();
+            if (today < mintime ) {
+                continue;
+            }
 
             final StringBuilder sbFileToday = new StringBuilder();
             try (Stream<Path> walk = Files.walk(dir.toPath())) {
@@ -100,6 +106,9 @@ public class TodayFiles {
                 final Stream<Path> result = walk
                         .filter(f -> !f.equals(dates.toPath()))
                         .filter(f -> !f.getParent().equals(dates.toPath()))
+                        .map(f -> {
+                            //System.out.println("FL>" + new Date (f.toFile().lastModified()) + ":" + new Date(today) + ":" + f.getFileName());
+                            return f;})
                         .filter(f -> f.toFile().lastModified() > today && f.toFile().lastModified() <= tomorrow)
                         .filter(f -> !f.getFileName().toString().equals("README.md"))
                         .filter(f -> !f.getFileName().toString().equals("index.md"))
@@ -109,14 +118,14 @@ public class TodayFiles {
                 result.forEach(p -> {
                     sbFileToday.append("\n")
                             .append("[").append(getNoExt(dir.toPath().relativize(p).toString(), ".md")).append("]")
-                            .append("(").append(dates.toPath().relativize(p).toString()).append(")").append("  ")
+                            .append("(").append(getLink(dates.toPath().relativize(p).toString())).append(")").append("  ")///////
                             ;
                 });
                 //System.out.println(sbFileToday.toString());
 
                 System.out.println(">>>>>>>>>>>" + sbFileToday.toString().trim().length() +":" +fileToday.toPath());
                 if (sbFileToday.toString().trim().length() != 0) {
-                    Files.write(fileToday.toPath(), sbFileToday.toString().getBytes(StandardCharsets.UTF_8));
+                    writeIt(fileToday.toPath(), sbFileToday.toString().getBytes(StandardCharsets.UTF_8));
                 }
 
             } catch (IOException e) {
@@ -125,5 +134,10 @@ public class TodayFiles {
         }
         
         writeIndex(dates, dates, (f1, f2) -> -1 * f1.compareTo(f2));
+    }
+    
+    private static void writeIt(Path path, byte[] bytes) throws IOException {
+        System.out.println(">>>>" + path+":" + new String(bytes, StandardCharsets.UTF_8));
+        //Files.write(path, bytes);
     }
 }
